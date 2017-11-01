@@ -93,56 +93,57 @@ class GLRenderer implements Renderer {
     }
 
     private void Render(float[] m) {
+        if((vertexBuffer != null)&&(drawListBuffer!=null)&&(uvBuffer != null)) {
+            // clear Screen and Depth Buffer,
+            // we have set the clear color as black.
+            GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-        // clear Screen and Depth Buffer,
-        // we have set the clear color as black.
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+            // get handle to vertex shader's vPosition member
+            int mPositionHandle =
+                    GLES20.glGetAttribLocation(Shaders.sp_Image, "vPosition");
 
-        // get handle to vertex shader's vPosition member
-        int mPositionHandle =
-                GLES20.glGetAttribLocation(Shaders.sp_Image, "vPosition");
+            // Enable generic vertex attribute array
+            GLES20.glEnableVertexAttribArray(mPositionHandle);
 
-        // Enable generic vertex attribute array
-        GLES20.glEnableVertexAttribArray(mPositionHandle);
+            // Prepare the triangle coordinate data
+            GLES20.glVertexAttribPointer(mPositionHandle, 3,
+                    GLES20.GL_FLOAT, false,
+                    0, vertexBuffer);
 
-        // Prepare the triangle coordinate data
-        GLES20.glVertexAttribPointer(mPositionHandle, 3,
-                GLES20.GL_FLOAT, false,
-                0, vertexBuffer);
+            // Get handle to texture coordinates location
+            int mTexCoordLoc = GLES20.glGetAttribLocation(Shaders.sp_Image,
+                    "a_texCoord");
 
-        // Get handle to texture coordinates location
-        int mTexCoordLoc = GLES20.glGetAttribLocation(Shaders.sp_Image,
-                "a_texCoord");
+            // Enable generic vertex attribute array
+            GLES20.glEnableVertexAttribArray(mTexCoordLoc);
 
-        // Enable generic vertex attribute array
-        GLES20.glEnableVertexAttribArray(mTexCoordLoc);
+            // Prepare the texturecoordinates
+            GLES20.glVertexAttribPointer(mTexCoordLoc, 2, GLES20.GL_FLOAT,
+                    false,
+                    0, uvBuffer);
 
-        // Prepare the texturecoordinates
-        GLES20.glVertexAttribPointer(mTexCoordLoc, 2, GLES20.GL_FLOAT,
-                false,
-                0, uvBuffer);
+            // Get handle to shape's transformation matrix
+            int mtrxhandle = GLES20.glGetUniformLocation(Shaders.sp_Image,
+                    "uMVPMatrix");
 
-        // Get handle to shape's transformation matrix
-        int mtrxhandle = GLES20.glGetUniformLocation(Shaders.sp_Image,
-                "uMVPMatrix");
+            // Apply the projection and view transformation
+            GLES20.glUniformMatrix4fv(mtrxhandle, 1, false, m, 0);
 
-        // Apply the projection and view transformation
-        GLES20.glUniformMatrix4fv(mtrxhandle, 1, false, m, 0);
+            // Get handle to textures locations
+            int mSamplerLoc = GLES20.glGetUniformLocation(Shaders.sp_Image,
+                    "s_texture");
 
-        // Get handle to textures locations
-        int mSamplerLoc = GLES20.glGetUniformLocation(Shaders.sp_Image,
-                "s_texture");
+            // Set the sampler texture unit to 0, where we have saved the texture.
+            GLES20.glUniform1i(mSamplerLoc, 0);
 
-        // Set the sampler texture unit to 0, where we have saved the texture.
-        GLES20.glUniform1i(mSamplerLoc, 0);
+            // Draw the triangle
+            GLES20.glDrawElements(GLES20.GL_TRIANGLES, indices.length,
+                    GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
 
-        // Draw the triangle
-        GLES20.glDrawElements(GLES20.GL_TRIANGLES, indices.length,
-                GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
-
-        // Disable vertex array
-        GLES20.glDisableVertexAttribArray(mPositionHandle);
-        GLES20.glDisableVertexAttribArray(mTexCoordLoc);
+            // Disable vertex array
+            GLES20.glDisableVertexAttribArray(mPositionHandle);
+            GLES20.glDisableVertexAttribArray(mTexCoordLoc);
+        }
     }
 
     @Override
@@ -227,13 +228,13 @@ class GLRenderer implements Renderer {
 
     }
 
-    public void SetupImage(String resID) {
+    public void loadTextures() {
         // Generate Textures, if more needed, alter these numbers.
         int[] texturenames = new int[1];
         GLES20.glGenTextures(1, texturenames, 0);
 
         // Retrieve our image from resources.
-        int id = mContext.getResources().getIdentifier("drawable/" + resID,
+        int id = mContext.getResources().getIdentifier("drawable/splash",
                 null, mContext.getPackageName());
 
         // Temporary create a bitmap

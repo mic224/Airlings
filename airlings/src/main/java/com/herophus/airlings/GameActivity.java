@@ -15,6 +15,8 @@ public class GameActivity extends Activity {
     private int width = 0;
     private int height = 0;
 
+    private boolean splashFinished = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,4 +56,7 @@ public class GameActivity extends Activity {
         glSurfaceView.onResume();
     }
 
+    public void splashFinished(boolean f) {
+        splashFinished = f;
+    }
 }
