@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.herophus.airlings.MainMenu"
+    tools:layout_editor_absoluteY="48dp">
+
+    <ImageButton
+        android:id="@+id/buttonLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/buttonTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/buttonShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/buttonBuy"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <ImageButton
+        android:id="@+id/buttonPlay"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
+        tools:layout_editor_absoluteX="122dp" />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="543dp"
+        android:layout_height="89dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/buttonCredits"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/buttonRate"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+    <ImageButton
+        android:id="@+id/buttonRate"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/buttonPlay"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+</android.support.constraint.ConstraintLayout>
