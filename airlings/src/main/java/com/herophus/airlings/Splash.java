@@ -1,12 +1,9 @@
 package com.herophus.airlings;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 public class Splash extends AppCompatActivity {
@@ -20,6 +17,9 @@ public class Splash extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //to remove the action bar (title bar)
         getSupportActionBar().hide();
+
+        // make background color black instead of default off black
+        getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 
         setContentView(R.layout.activity_splash);
 
