@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Airlings</string>
+    <string name="string_progress">Progress</string>
 </resources>
