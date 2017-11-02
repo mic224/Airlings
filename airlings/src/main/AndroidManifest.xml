@@ -20,7 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameActivity" />
-        <activity android:name=".MainMenu"></activity>
+        <activity
+            android:name=".MainMenu"
+            android:screenOrientation="sensorLandscape"></activity>
+        <activity
+            android:name=".LevelMenu"
+            android:screenOrientation="sensorLandscape"></activity>
     </application>
 
 </manifest>

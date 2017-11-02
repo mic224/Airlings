@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.herophus.airlings.LevelMenu"
+    tools:layout_editor_absoluteY="48dp">
+
+    <ImageButton
+        android:id="@+id/level1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/level2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ImageButton
+        android:id="@+id/level2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/level3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level1"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ImageButton
+        android:id="@+id/level3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/level4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level2"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ImageButton
+        android:id="@+id/level4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/level5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level3"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ImageButton
+        android:id="@+id/level5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level4"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <ImageButton
+        android:id="@+id/level6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/level7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level1" />
+
+    <ImageButton
+        android:id="@+id/level7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/level8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level6"
+        app:layout_constraintTop_toBottomOf="@+id/level2" />
+
+    <ImageButton
+        android:id="@+id/level8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/level9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level7"
+        app:layout_constraintTop_toBottomOf="@+id/level3" />
+
+    <ImageButton
+        android:id="@+id/level9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/level10"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level8"
+        app:layout_constraintTop_toBottomOf="@+id/level4" />
+
+    <ImageButton
+        android:id="@+id/level10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/level9"
+        app:layout_constraintTop_toBottomOf="@+id/level5" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="595dp"
+        android:layout_height="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
