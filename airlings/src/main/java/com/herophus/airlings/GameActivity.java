@@ -8,7 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class GameActivity extends Activity {
-    // Our OpenGL Surfaceview
+
+    // OpenGL Surfaceview
     private GLSurfaceView glSurfaceView;
     private GLRenderer renderer;
 
@@ -29,14 +30,16 @@ public class GameActivity extends Activity {
         // Fullscreen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // Getting screen measurements
         DisplayMetrics displayMetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
+        // creating an OpenGL renderer
         renderer = new GLRenderer(this, width, height);
 
-        // We create our Surfaceview for our OpenGL here.
+        // creating custom Surfaceview for OpenGL
         glSurfaceView = new SurfaceView(this, renderer);
 
         // Set our view.
@@ -56,7 +59,4 @@ public class GameActivity extends Activity {
         glSurfaceView.onResume();
     }
 
-    public void splashFinished(boolean f) {
-        splashFinished = f;
-    }
 }

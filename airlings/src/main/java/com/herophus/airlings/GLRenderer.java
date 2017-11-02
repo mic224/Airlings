@@ -17,7 +17,7 @@ import java.nio.ShortBuffer;
 
 import static javax.microedition.khronos.opengles.GL10.GL_CLAMP_TO_EDGE;
 
-class GLRenderer implements Renderer {
+public class GLRenderer implements Renderer {
 
     // Our matrices
     private final float[] mtrxProjection = new float[16];
@@ -36,6 +36,7 @@ class GLRenderer implements Renderer {
     private int screenWidth = 0;
     private int screenHeight = 0;
 
+    // camera location
     private float cameraX = 0.0f;
     private float cameraY = 0.0f;
 
@@ -44,6 +45,7 @@ class GLRenderer implements Renderer {
     private long mLastTime;
 
     public GLRenderer(Context c, int _width, int _height) {
+        // update the screen resolution
         screenWidth = _width;
         screenHeight = _height;
 
@@ -93,6 +95,7 @@ class GLRenderer implements Renderer {
     }
 
     private void Render(float[] m) {
+        // only render if there's something to render
         if((vertexBuffer != null)&&(drawListBuffer!=null)&&(uvBuffer != null)) {
             // clear Screen and Depth Buffer,
             // we have set the clear color as black.
@@ -201,7 +204,7 @@ class GLRenderer implements Renderer {
         GLES20.glUseProgram(Shaders.sp_Image);
     }
 
-    public void SetupSquare() {
+//    public void SetupSquare() {
 //        // We have create the vertices of our view.
 //        vertices = new float[]
 //                {       0.0f, 0.0f, 0.0f,
@@ -225,8 +228,8 @@ class GLRenderer implements Renderer {
 //        drawListBuffer = dlb.asShortBuffer();
 //        drawListBuffer.put(indices);
 //        drawListBuffer.position(0);
-
-    }
+//
+//    }
 
     public void loadTextures() {
         // Generate Textures, if more needed, alter these numbers.
@@ -264,17 +267,17 @@ class GLRenderer implements Renderer {
 
     }
 
-    public void prepareRendering(FloatBuffer vertBuff, FloatBuffer uvBuff,
-                                 ShortBuffer drawListBuff, float verts[], short inds[],
-                                 float uv[]) {
-        vertexBuffer = vertBuff;
-        uvBuffer = uvBuff;
-        drawListBuffer = drawListBuff;
-
-        vertices = verts;
-        indices = inds;
-        uvs = uv;
-    }
+//    public void prepareRendering(FloatBuffer vertBuff, FloatBuffer uvBuff,
+//                                 ShortBuffer drawListBuff, float verts[], short inds[],
+//                                 float uv[]) {
+//        vertexBuffer = vertBuff;
+//        uvBuffer = uvBuff;
+//        drawListBuffer = drawListBuff;
+//
+//        vertices = verts;
+//        indices = inds;
+//        uvs = uv;
+//    }
 
 //    public void scroll(float _x, float _y) {
 //        cameraX += _x;
@@ -290,6 +293,7 @@ class GLRenderer implements Renderer {
     }
 
     public void clearScreen() {
+        // clear all buffers for a blank screen
         int mask = 0;
         mask = GLES20.GL_COLOR_BUFFER_BIT;
         mask |= GLES20.GL_DEPTH_BUFFER_BIT;

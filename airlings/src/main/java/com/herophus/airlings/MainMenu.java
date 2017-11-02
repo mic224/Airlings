@@ -25,6 +25,9 @@ public class MainMenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        // display a dialog to confirm the user wants to exit the game
+        // when the back button is pressed on the main menu
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Exit")
@@ -41,6 +44,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void playOnClick(View v) {
+        // when the user clicks play move to the level menu
         Intent intent = new Intent(getApplicationContext(), LevelMenu.class);
         startActivity(intent);
     }

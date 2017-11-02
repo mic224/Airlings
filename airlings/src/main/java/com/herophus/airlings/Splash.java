@@ -19,11 +19,13 @@ public class Splash extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
+        // this is just to display the splash screen for given amount of time
         Thread mThread = new Thread() {
             @Override
             public void run() {
                 try {
                     sleep(3000);
+                    // after sleeping for given time display the main menu
                     Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                     startActivity(intent);
                     finish();

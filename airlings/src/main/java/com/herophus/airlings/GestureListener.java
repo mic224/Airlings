@@ -3,7 +3,7 @@ package com.herophus.airlings;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-class GestureListener extends GestureDetector.SimpleOnGestureListener {
+public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     GLRenderer renderer;
 

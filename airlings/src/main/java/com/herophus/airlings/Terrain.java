@@ -1,16 +1,9 @@
 package com.herophus.airlings;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+public class Terrain {
 
-class Terrain {
+    Terrain() {
 
-    Terrain(Bitmap mapIn) {
-
-
-    }
-
-    void scroll(float distanceX, float distanceY) {
 
     }
 

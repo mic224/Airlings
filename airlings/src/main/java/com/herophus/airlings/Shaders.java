@@ -2,7 +2,7 @@ package com.herophus.airlings;
 
 import android.opengl.GLES20;
 
-class Shaders {
+public class Shaders {
 
     // Program variables
     public static int sp_SolidColor;

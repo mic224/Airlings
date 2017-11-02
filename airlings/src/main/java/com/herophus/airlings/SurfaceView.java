@@ -5,7 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.MotionEvent;
 
-class SurfaceView extends GLSurfaceView {
+public class SurfaceView extends GLSurfaceView {
 
     private final GLRenderer renderer;
 
