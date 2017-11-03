@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/level4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_progress" />
 
     <ImageButton
         android:id="@+id/level6"
@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/rank1" />
 
     <ImageButton
         android:id="@+id/level7"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toStartOf="@+id/level8"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/level6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/rank2" />
 
     <ImageButton
         android:id="@+id/level8"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toStartOf="@+id/level9"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/level7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/rank3" />
 
     <ImageButton
         android:id="@+id/level9"
@@ -118,7 +118,7 @@
         app:layout_constraintEnd_toStartOf="@+id/level10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/level8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/rank4" />
 
     <ImageButton
         android:id="@+id/level10"
@@ -129,138 +129,128 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/level9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/rank5" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/rank1"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/rank2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level1"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintTop_toBottomOf="@+id/level1" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/rank2"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/rank3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/level2"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank1"
+        app:layout_constraintTop_toBottomOf="@+id/level2" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/rank3"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/rank4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/level3"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank2"
+        app:layout_constraintTop_toBottomOf="@+id/level3" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/rank4"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/rank5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/level4"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank3"
+        app:layout_constraintTop_toBottomOf="@+id/level4" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/rank5"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/level5"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank4"
+        app:layout_constraintTop_toBottomOf="@+id/level5" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/rank6"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/rank7"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level6"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintTop_toBottomOf="@+id/level6" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/rank7"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintEnd_toStartOf="@+id/rank8"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/level7"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank6"
+        app:layout_constraintTop_toBottomOf="@+id/level7" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/rank8"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintEnd_toStartOf="@+id/rank9"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/level8"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank7"
+        app:layout_constraintTop_toBottomOf="@+id/level8" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/rank9"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/rank10"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/level9"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank8"
+        app:layout_constraintTop_toBottomOf="@+id/level9" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/rank10"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/level10"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/rank9"
+        app:layout_constraintTop_toBottomOf="@+id/level10" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/iv_progress"
         android:layout_width="600dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"

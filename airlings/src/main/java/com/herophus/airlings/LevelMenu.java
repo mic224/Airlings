@@ -5,15 +5,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 public class LevelMenu extends AppCompatActivity {
 
     public static final String GLOBAL_PREFS = "Prefs";
     public static final String currentLevel = "currentLevel";
 
+    public static final String l1Rank = "l1Rank";
+    public static final String l2Rank = "l2Rank";
+    public static final String l3Rank = "l3Rank";
+    public static final String l4Rank = "l4Rank";
+    public static final String l5Rank = "l5Rank";
+    public static final String l6Rank = "l6Rank";
+    public static final String l7Rank = "l7Rank";
+    public static final String l8Rank = "l8Rank";
+    public static final String l9Rank = "l9Rank";
+    public static final String l10Rank = "l10Rank";
+
     private int curLevel = 0;
 
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -36,12 +48,34 @@ public class LevelMenu extends AppCompatActivity {
             // this is the first run set user to be on level 1
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(currentLevel, 1);
+
+            initRankings(editor);
         }
+
+
+    }
+
+    private void initRankings(SharedPreferences.Editor editor) {
+        // initialize all rankings to 0
+        editor.putInt(l1Rank, 0);
+        editor.putInt(l2Rank, 0);
+        editor.putInt(l3Rank, 0);
+        editor.putInt(l4Rank, 0);
+        editor.putInt(l5Rank, 0);
+        editor.putInt(l6Rank, 0);
+        editor.putInt(l7Rank, 0);
+        editor.putInt(l8Rank, 0);
+        editor.putInt(l9Rank, 0);
+        editor.putInt(l10Rank, 0);
+    }
+
+    private void initStars() {
+        ImageView iv_r1 = (ImageView) findViewById(R.id.rank1);
 
     }
 
     public void l1_onClick(View v) {
-
+        // user can always play level 1
     }
 
     public void l2_onClick(View v) {
