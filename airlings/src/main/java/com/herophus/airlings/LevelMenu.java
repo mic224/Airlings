@@ -12,16 +12,8 @@ public class LevelMenu extends AppCompatActivity {
     public static final String GLOBAL_PREFS = "Prefs";
     public static final String currentLevel = "currentLevel";
 
-    public static final String l1Rank = "l1Rank";
-    public static final String l2Rank = "l2Rank";
-    public static final String l3Rank = "l3Rank";
-    public static final String l4Rank = "l4Rank";
-    public static final String l5Rank = "l5Rank";
-    public static final String l6Rank = "l6Rank";
-    public static final String l7Rank = "l7Rank";
-    public static final String l8Rank = "l8Rank";
-    public static final String l9Rank = "l9Rank";
-    public static final String l10Rank = "l10Rank";
+    private static final int numberOfLevels = 10;
+    public static final String[] rankings = new String[10];
 
     private int curLevel = 0;
 
@@ -44,6 +36,8 @@ public class LevelMenu extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(GLOBAL_PREFS, MODE_PRIVATE);
         sharedPreferences.getInt(currentLevel, curLevel);
 
+        initRankPrefs();
+
         if(curLevel == 0) {
             // this is the first run set user to be on level 1
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -52,25 +46,27 @@ public class LevelMenu extends AppCompatActivity {
             initRankings(editor);
         }
 
+        initStars();
 
     }
 
+    // initialize all the shared preference variables for the number
+    // of levels on this page.
+    private void initRankPrefs() {
+        for(int i = 0; i < numberOfLevels; i++) {
+            rankings[i] = "l" + i + "Rank";
+        }
+    }
+
+    // initialize all rankings to 0 for first run
     private void initRankings(SharedPreferences.Editor editor) {
-        // initialize all rankings to 0
-        editor.putInt(l1Rank, 0);
-        editor.putInt(l2Rank, 0);
-        editor.putInt(l3Rank, 0);
-        editor.putInt(l4Rank, 0);
-        editor.putInt(l5Rank, 0);
-        editor.putInt(l6Rank, 0);
-        editor.putInt(l7Rank, 0);
-        editor.putInt(l8Rank, 0);
-        editor.putInt(l9Rank, 0);
-        editor.putInt(l10Rank, 0);
+        for(int i = 1; i <= numberOfLevels; i++) {
+            editor.putInt("l" + i + "Rank", 0);
+        }
+        editor.commit();
     }
 
     private void initStars() {
-        ImageView iv_r1 = (ImageView) findViewById(R.id.rank1);
 
     }
 
