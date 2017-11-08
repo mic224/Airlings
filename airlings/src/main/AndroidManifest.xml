@@ -22,10 +22,13 @@
         <activity android:name=".GameActivity" />
         <activity
             android:name=".MainMenu"
-            android:screenOrientation="sensorLandscape"></activity>
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".LevelMenu"
-            android:screenOrientation="sensorLandscape"></activity>
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".JjjjjjActivity"
+            android:label="@string/title_activity_jjjjjj"></activity>
     </application>
 
 </manifest>
