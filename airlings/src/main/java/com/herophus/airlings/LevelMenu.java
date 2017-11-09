@@ -17,10 +17,10 @@ public class LevelMenu extends AppCompatActivity {
     public static final String GLOBAL_PREFS = "Prefs";
     public static final String currentLevel = "currentLevel";
 
-    private static final int numberOfLevels = 20;
+    private static final int numberOfLevels = 14;
     public static final String[] rankings = new String[numberOfLevels];
-    private ImageView[] ivStars = new ImageView[numberOfLevels];
-    private Button[] butLevels = new Button[numberOfLevels];
+    private static final ImageView[] ivStars = new ImageView[numberOfLevels];
+    private static final Button[] butLevels = new Button[numberOfLevels];
 
     private int curLevel = 0;
 
@@ -76,6 +76,12 @@ public class LevelMenu extends AppCompatActivity {
         editor.commit();
     }
 
+    // helper function to initialize the layout of the menu
+    // makes 4 rows of Views (stars derectly under buttons):
+    // row 1: Buttons: The levels
+    // row 2: ImageViews: a star based on the rank achieved on the level
+    // row 3: Buttons: upper levels
+    // row 4: ImageViews: a star based on the rank achieved on the level
     private void initLayout() {
         ConstraintLayout cl = findViewById(R.id.level_menu_layout);
         ConstraintSet cs = new ConstraintSet();
@@ -85,12 +91,14 @@ public class LevelMenu extends AppCompatActivity {
         LinearLayout.LayoutParams lpStar = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-
+        // this changes the amount of space between stars and buttons
         lpStar.setMargins(dp(0), dp(0), dp(0), dp(32));
 
+        // create a LinearLayout for each row of stars and buttons
         LinearLayout[] llButtons = new LinearLayout[2];
         LinearLayout[] llStars = new LinearLayout[2];
 
+        // another LinearLayout vertically to align all the rows
         LinearLayout vert = new LinearLayout(this);
         vert.setId(findId());
         vert.setLayoutParams(lp);
@@ -98,6 +106,7 @@ public class LevelMenu extends AppCompatActivity {
         vert.setVerticalGravity(Gravity.NO_GRAVITY);
 
         for(int i = 0; i < 2; i++) {
+            // create the layouots for each of the button rows
             llButtons[i] = new LinearLayout(this);
             llButtons[i].setId(findId());
             llButtons[i].setMinimumWidth(dp(576));
@@ -105,6 +114,7 @@ public class LevelMenu extends AppCompatActivity {
             llButtons[i].setOrientation(LinearLayout.HORIZONTAL);
             llButtons[i].setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
 
+            // create the layouts for each of the star rows
             llStars[i] = new LinearLayout(this);
             llStars[i].setId(findId());
             llStars[i].setMinimumWidth(dp(576));
@@ -118,32 +128,42 @@ public class LevelMenu extends AppCompatActivity {
             butLevels[i] = new Button(this);
             butLevels[i].setId(findId());
 
+            // place each button in the correct row
             if(i < numberOfLevels/2) {
+                // lower level row
                 llButtons[0].addView(butLevels[i]);
             } else {
+                // upper levels
                 llButtons[1].addView(butLevels[i]);
             }
 
 
+            // sets the dimensions of the button objects
             butLevels[i].getLayoutParams().width = dp(50);
             butLevels[i].getLayoutParams().height = dp(50);
 
+            // now for the stars
             ivStars[i] = new ImageView(this);
-            // set the id for connections
             ivStars[i].setId(findId());
-            ivStars[i].setImageResource(R.drawable.empty_star);
 
+            // place the stars in the correct row
             if(i < numberOfLevels/2) {
+                // lower levels
                 llStars[0].addView(ivStars[i]);
             } else {
+                // upper levels
                 llStars[1].addView(ivStars[i]);
             }
 
+            // star dimensions
             ivStars[i].getLayoutParams().width = dp(50);
             ivStars[i].getLayoutParams().height = dp(25);
+
+            // initialize all ranks to 0(not completed) for first run
+            ivStars[i].setImageResource(R.drawable.empty_star);
         }
 
-
+        // connect the new layouts up to the rest of the layout
         cs.connect(vert.getId(), ConstraintSet.TOP, R.id.iv_progress, ConstraintSet.BOTTOM,
                 dp(32));
         cs.connect(vert.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID,
@@ -153,13 +173,16 @@ public class LevelMenu extends AppCompatActivity {
         cs.connect(vert.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID,
                 ConstraintSet.END, 8);
 
-        vert.addView(llButtons[0]);
-        vert.addView(llStars[0]);
-        vert.addView(llButtons[1]);
-        vert.addView(llStars[1]);
+        // add the horizontal LinearLayout to the vertical LinearLayout
+        for(int i = 0; i < 2; i++) {
+            vert.addView(llButtons[i]);
+            vert.addView(llStars[i]);
+        }
 
+        // add the everything to the overall layout
         cl.addView(vert);
 
+        // display
         cs.applyTo(cl);
     }
 
