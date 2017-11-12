@@ -1,6 +1,5 @@
 package com.herophus.airlings;
 
-import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +13,10 @@ import android.widget.LinearLayout;
 
 public class LevelMenu extends AppCompatActivity {
 
-    public static final String GLOBAL_PREFS = "Prefs";
-    public static final String currentLevel = "currentLevel";
-
-    private static final int numberOfLevels = 14;
-    public static final String[] rankings = new String[numberOfLevels];
-    private static final ImageView[] ivStars = new ImageView[numberOfLevels];
-    private static final Button[] butLevels = new Button[numberOfLevels];
+    private static final ImageView[] ivStars = new ImageView[GamePreferences.getNumberOfLevels()];
+    private static final Button[] butLevels = new Button[GamePreferences.getNumberOfLevels()];
 
     private int curLevel = 0;
-
-    private SharedPreferences sharedPreferences;
 
     // for generating unique ids
     private static int id = 1;
@@ -42,42 +34,54 @@ public class LevelMenu extends AppCompatActivity {
 
         setContentView(R.layout.activity_level_menu);
 
-        // checking what level the user is currently on
-        sharedPreferences = getSharedPreferences(GLOBAL_PREFS, MODE_PRIVATE);
-        sharedPreferences.getInt(currentLevel, curLevel);
+        // Initialize shared preferences singleton if its not already
+        // initialized
+        GamePreferences.init(this);
 
-        initRankPrefs();
+        // checking what level the user is currently on
+        curLevel = GamePreferences.getCurrentLevel();
+
 
         if (curLevel == 0) {
-            // this is the first run set user to be on level 1
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(currentLevel, 1);
+            // this is the first run set user to be on level 0
+            GamePreferences.setCurrentLevel(1);
 
-            initRankings(editor);
+            initRankings();
         }
 
         initLayout();
 
     }
 
-    // initialize all the shared preference variables for the number
-    // of levels on this page.
-    private void initRankPrefs() {
-        for (int i = 0; i < numberOfLevels; i++) {
-            rankings[i] = "l" + i + "Rank";
+    // initialize all rankings to 0 for first run
+    private void initRankings() {
+        for (int i = 0; i < GamePreferences.getNumberOfLevels(); i++) {
+            GamePreferences.setLevelRank(GamePreferences.LEVEL[i], 0);
         }
     }
 
-    // initialize all rankings to 0 for first run
-    private void initRankings(SharedPreferences.Editor editor) {
-        for (int i = 1; i <= numberOfLevels; i++) {
-            editor.putInt("l" + i + "Rank", 0);
+    // helper function to initialize the star
+    // images based on the rank achieved
+    private void initStars(int i) {
+        int value = GamePreferences.getLevelRank(GamePreferences.LEVEL[i]);
+        switch (value) {
+            case 0:
+                ivStars[i].setImageResource(R.drawable.empty_star);
+                break;
+            case 1:
+                ivStars[i].setImageResource(R.drawable.bronze_star);
+                break;
+            case 2:
+                ivStars[i].setImageResource(R.drawable.silver_star);
+                break;
+            case 3:
+                ivStars[i].setImageResource(R.drawable.gold_star);
+                break;
         }
-        editor.commit();
     }
 
     // helper function to initialize the layout of the menu
-    // makes 4 rows of Views (stars derectly under buttons):
+    // makes 4 rows of Views (stars directly under buttons):
     // row 1: Buttons: The levels
     // row 2: ImageViews: a star based on the rank achieved on the level
     // row 3: Buttons: upper levels
@@ -105,8 +109,8 @@ public class LevelMenu extends AppCompatActivity {
         vert.setOrientation(LinearLayout.VERTICAL);
         vert.setVerticalGravity(Gravity.NO_GRAVITY);
 
-        for(int i = 0; i < 2; i++) {
-            // create the layouots for each of the button rows
+        for (int i = 0; i < 2; i++) {
+            // create the layouts for each of the button rows
             llButtons[i] = new LinearLayout(this);
             llButtons[i].setId(findId());
             llButtons[i].setMinimumWidth(dp(576));
@@ -124,12 +128,12 @@ public class LevelMenu extends AppCompatActivity {
 
         }
 
-        for (int i = 0; i < numberOfLevels; i++) {
+        for (int i = 0; i < GamePreferences.getNumberOfLevels(); i++) {
             butLevels[i] = new Button(this);
             butLevels[i].setId(findId());
 
             // place each button in the correct row
-            if(i < numberOfLevels/2) {
+            if (i < GamePreferences.getNumberOfLevels() / 2) {
                 // lower level row
                 llButtons[0].addView(butLevels[i]);
             } else {
@@ -147,7 +151,7 @@ public class LevelMenu extends AppCompatActivity {
             ivStars[i].setId(findId());
 
             // place the stars in the correct row
-            if(i < numberOfLevels/2) {
+            if (i < GamePreferences.getNumberOfLevels() / 2) {
                 // lower levels
                 llStars[0].addView(ivStars[i]);
             } else {
@@ -159,8 +163,9 @@ public class LevelMenu extends AppCompatActivity {
             ivStars[i].getLayoutParams().width = dp(50);
             ivStars[i].getLayoutParams().height = dp(25);
 
-            // initialize all ranks to 0(not completed) for first run
-            ivStars[i].setImageResource(R.drawable.empty_star);
+            // initialize all star images based on rank achieved on that
+            // level
+            initStars(i);
         }
 
         // connect the new layouts up to the rest of the layout
@@ -174,7 +179,7 @@ public class LevelMenu extends AppCompatActivity {
                 ConstraintSet.END, 8);
 
         // add the horizontal LinearLayout to the vertical LinearLayout
-        for(int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) {
             vert.addView(llButtons[i]);
             vert.addView(llStars[i]);
         }
@@ -195,7 +200,7 @@ public class LevelMenu extends AppCompatActivity {
     // returns a valid id that is unique and not already in use
     public int findId() {
         View v = findViewById(id);
-        while(v != null) {
+        while (v != null) {
             v = findViewById(++id);
         }
         return id++;
