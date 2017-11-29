@@ -1,6 +1,7 @@
 package com.herophus.airlings;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.os.Bundle;
@@ -38,12 +39,12 @@ public class LevelMenu extends Activity {
         GamePreferences.init(this);
 
         // checking what level the user is currently on
-        curLevel = GamePreferences.getCurrentLevel();
+        curLevel = GamePreferences.getHighestLevel();
 
 
         if (GamePreferences.getFirstRun() == true) {
             // this is the first run set user to be on level 0
-            GamePreferences.setCurrentLevel(0);
+            GamePreferences.setHighestLevel(0);
 
             initRankings();
 
@@ -147,18 +148,29 @@ public class LevelMenu extends Activity {
             butLevels[i].getLayoutParams().width = dp(50);
             butLevels[i].getLayoutParams().height = dp(50);
 
+            // a final variable must be used for the onClick listener below
             final int index = i;
+            // this is the dynamic click listener method
             butLevels[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int curLev = GamePreferences.getCurrentLevel();
+                    // find the highest level achieved by the player.
+                    int curLev = GamePreferences.getHighestLevel();
+                    // only allow the player to play levels at or
+                    // below the current level; don't want them to
+                    // skip ahead without passing previous levels.
                     if (curLev >= index) {
-                        // TODO: add intent to start GameActivity
-                        GamePreferences.setCurrentLevel(0);
+                        // need to set a preference to indicate which
+                        // level the user chose to play
+                        GamePreferences.setCurrentLevel(index);
+
+                        // then start the GameActivity to begin playing
+                        // the chosen level
+                        Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                        startActivity(intent);
                     }
                 }
             });
-
 
             // now for the stars
             ivStars[i] = new ImageView(this);

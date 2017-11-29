@@ -13,12 +13,18 @@ public class GamePreferences {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
+    // This is the number of levels in the game
+    // allows for dynamically changing the amount
+    // of levels for adding more levels in the future.
     private static final int NUMBER_OF_LEVELS = 14;
 
+    // This is the array of levels in the game. The array
+    // of strings will be used as a key.
     public static String[] LEVEL = new String[NUMBER_OF_LEVELS];
 
     public enum Setting {
-        CURRENT_LEVEL
+        HIGHEST_LEVEL_ACHEIVED, // the highest level playable
+        CURRENT_LEVEL, // the level the player has chosen to play
     }
 
     private GamePreferences () {}
@@ -40,13 +46,21 @@ public class GamePreferences {
         return NUMBER_OF_LEVELS;
     }
 
+    public static int getHighestLevel() {
+        return sharedPreferences.getInt(Setting.HIGHEST_LEVEL_ACHEIVED.name(), 0);
+    }
+
+    public static void setHighestLevel(int value) {
+        editor.putInt(Setting.HIGHEST_LEVEL_ACHEIVED.name(), value);
+        editor.commit();
+    }
+
     public static int getCurrentLevel() {
         return sharedPreferences.getInt(Setting.CURRENT_LEVEL.name(), 0);
     }
 
     public static void setCurrentLevel(int value) {
         editor.putInt(Setting.CURRENT_LEVEL.name(), value);
-        editor.commit();
     }
 
     public static int getLevelRank(String levelKey) {
