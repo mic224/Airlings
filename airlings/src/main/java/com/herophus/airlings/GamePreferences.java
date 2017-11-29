@@ -58,4 +58,12 @@ public class GamePreferences {
         editor.commit();
     }
 
+    public static Boolean getFirstRun() {
+        return sharedPreferences.getBoolean("firstRun", true);
+    }
+
+    public static void setFirstRunFalse() {
+        editor.putBoolean("firstRun", false);
+        editor.commit();
+    }
 }

@@ -1,8 +1,8 @@
 package com.herophus.airlings;
 
+import android.app.Activity;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class LevelMenu extends AppCompatActivity {
+import java.util.HashMap;
+
+public class LevelMenu extends Activity {
 
     private static final ImageView[] ivStars = new ImageView[GamePreferences.getNumberOfLevels()];
     private static final Button[] butLevels = new Button[GamePreferences.getNumberOfLevels()];
@@ -21,7 +23,6 @@ public class LevelMenu extends AppCompatActivity {
     // for generating unique ids
     private static int id = 1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +30,6 @@ public class LevelMenu extends AppCompatActivity {
         //to remove "information bar" above the action bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //to remove the action bar (title bar)
-        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_level_menu);
 
@@ -42,15 +41,17 @@ public class LevelMenu extends AppCompatActivity {
         curLevel = GamePreferences.getCurrentLevel();
 
 
-        if (curLevel == 0) {
+        if (GamePreferences.getFirstRun() == true) {
             // this is the first run set user to be on level 0
-            GamePreferences.setCurrentLevel(1);
+            GamePreferences.setCurrentLevel(0);
 
             initRankings();
+
+            // set the firstRun preference to false
+            GamePreferences.setFirstRunFalse();
         }
 
         initLayout();
-
     }
 
     // initialize all rankings to 0 for first run
@@ -146,6 +147,19 @@ public class LevelMenu extends AppCompatActivity {
             butLevels[i].getLayoutParams().width = dp(50);
             butLevels[i].getLayoutParams().height = dp(50);
 
+            final int index = i;
+            butLevels[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int curLev = GamePreferences.getCurrentLevel();
+                    if (curLev >= index) {
+                        // TODO: add intent to start GameActivity
+                        GamePreferences.setCurrentLevel(0);
+                    }
+                }
+            });
+
+
             // now for the stars
             ivStars[i] = new ImageView(this);
             ivStars[i].setId(findId());
@@ -166,6 +180,7 @@ public class LevelMenu extends AppCompatActivity {
             // initialize all star images based on rank achieved on that
             // level
             initStars(i);
+
         }
 
         // connect the new layouts up to the rest of the layout

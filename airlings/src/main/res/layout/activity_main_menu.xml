@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonTweet"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonShare"
-        app:srcCompat="@drawable/button_like" />
+        android:src="@drawable/button_like" />
 
     <ImageButton
         android:id="@+id/buttonTweet"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonLike"
-        app:srcCompat="@drawable/button_tweet" />
+        android:src="@drawable/button_tweet" />
 
     <ImageButton
         android:id="@+id/buttonShare"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonLike"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonBuy"
-        app:srcCompat="@drawable/button_share" />
+        android:src="@drawable/button_share" />
 
     <ImageButton
         android:id="@+id/buttonPlay"
@@ -62,7 +62,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo"
-        app:srcCompat="@drawable/button_play" />
+        android:src="@drawable/button_play" />
 
     <ImageView
         android:id="@+id/imageLogo"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/iv_game_logo" />
+        android:src="@drawable/iv_game_logo" />
 
     <ImageButton
         android:id="@+id/buttonCredits"
@@ -90,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonRate"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo"
-        app:srcCompat="@drawable/button_credits" />
+        android:src="@drawable/button_credits" />
 
     <ImageButton
         android:id="@+id/buttonRate"
@@ -106,7 +106,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonPlay"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo"
-        app:srcCompat="@drawable/button_rate" />
+        android:src="@drawable/button_rate" />
 
     <ImageButton
         android:id="@+id/buttonBuy"
@@ -121,6 +121,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/button_buy" />
+        android:src="@drawable/button_buy" />
 
 </android.support.constraint.ConstraintLayout>
