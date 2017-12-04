@@ -1,48 +1,44 @@
 package com.herophus.airlings;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.Toast;
 
 public class GameActivity extends Activity {
 
     // OpenGL Surfaceview
     private GLSurfaceView glSurfaceView;
-    private GLRenderer renderer;
-
-    private int width = 0;
-    private int height = 0;
+    private boolean rendererSet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        // Turn off the window's title bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // Super
         super.onCreate(savedInstanceState);
+        glSurfaceView = new GLSurfaceView(this);
 
-        // Fullscreen mode
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ActivityManager activityManager =
+                (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo configurationInfo = activityManager
+                .getDeviceConfigurationInfo();
 
-        // Getting screen measurements
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        height = displayMetrics.heightPixels;
-        width = displayMetrics.widthPixels;
+        final boolean supportsEs2 = configurationInfo.reqGlEsVersion >= 0x20000;
 
-        // creating an OpenGL renderer
-        renderer = new GLRenderer(this, width, height);
+        if (supportsEs2) {
+            // Request an OpenGL ES 2.0 compatible context.
+            glSurfaceView.setEGLContextClientVersion(2);
+            // Assign our renderer.
+            glSurfaceView.setRenderer(new GLRenderer(this));
+            rendererSet = true;
+        } else {
+            Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        // creating custom Surfaceview for OpenGL
-        glSurfaceView = new SurfaceView(this, renderer);
-
-        // Set our view.
         setContentView(glSurfaceView);
-
     }
 
     @Override
